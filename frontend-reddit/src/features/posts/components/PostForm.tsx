@@ -4,13 +4,15 @@ import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
 import FileInput from '../../../components/UI/FileInput/FileInput';
 import { PostsMutation } from '../../../types';
+import { useAppSelector } from '../../../app/hooks';
+import { selectPostCreateLoading } from '../postSlice';
 
 interface Props {
   onSubmit: (post: PostsMutation) => void;
 }
 
 const PostForm: React.FC<Props> = ({ onSubmit }) => {
-  const isLoading = false;
+  const isLoading = useAppSelector(selectPostCreateLoading);
   const [isImage, setIsImage] = useState(false);
   const [post, setPost] = useState<PostsMutation>({
     title: '',

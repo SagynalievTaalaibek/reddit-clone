@@ -18,7 +18,7 @@ dayjs.extend(LocalizedFormat);
 
 const ImageCardMedia = styled(CardMedia)({
   height: 0,
-  paddingTop: '48%', // 16:9 56.25%
+  paddingTop: '61%', // 16:9 56.25%
 });
 
 interface Props {
@@ -54,7 +54,7 @@ const PostItem: React.FC<Props> = ({ id, title, image, datetime, author }) => {
               <ImageCardMedia
                 image={cardImage}
                 title={title}
-                sx={{ maxWidth: '330px', height: '100%' }}
+                sx={{ maxWidth: '340px', height: '100%' }}
               />
             </Grid>
             <Grid item xs={6}>

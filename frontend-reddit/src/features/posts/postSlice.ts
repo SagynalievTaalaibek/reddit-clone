@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { fetchPosts } from './postThunks';
+import { createPost, fetchPosts } from './postThunks';
 import { PostHomeWindow, PostWithID } from '../../types';
 
 interface PostState {
@@ -8,6 +8,7 @@ interface PostState {
   onePost: PostWithID | null;
   fetchPostLoading: boolean;
   fetchOnePostLoading: boolean;
+  createLoading: boolean;
 }
 
 const initialState: PostState = {
@@ -15,6 +16,7 @@ const initialState: PostState = {
   onePost: null,
   fetchPostLoading: false,
   fetchOnePostLoading: false,
+  createLoading: false,
 };
 
 export const postSlice = createSlice({
@@ -33,6 +35,17 @@ export const postSlice = createSlice({
       .addCase(fetchPosts.rejected, (state) => {
         state.fetchPostLoading = false;
       });
+
+    builder
+      .addCase(createPost.pending, (state) => {
+        state.createLoading = true;
+      })
+      .addCase(createPost.fulfilled, (state) => {
+        state.createLoading = false;
+      })
+      .addCase(createPost.rejected, (state) => {
+        state.createLoading = false;
+      });
   },
 });
 
@@ -43,3 +56,5 @@ export const selectPostFetchLoading = (state: RootState) =>
   state.posts.fetchPostLoading;
 export const selectOnePostFetchLoading = (state: RootState) =>
   state.posts.fetchOnePostLoading;
+export const selectPostCreateLoading = (state: RootState) =>
+  state.posts.createLoading;

@@ -12,10 +12,8 @@ postRouter.post(
   auth,
   async (req: RequestWithUser, res, next) => {
     try {
-      const { description, image } = req.body as {
-        description: string | null;
-        image: string | null;
-      };
+      const description = req.body.description;
+      const image = req.file ? req.file.filename : null;
 
       if (
         (description === null ||
