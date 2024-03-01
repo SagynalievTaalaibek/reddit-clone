@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../../axiosApi';
-import { PostHomeWindow, PostsMutation } from '../../types';
 import { RootState } from '../../app/store';
+import { PostHomeWindow, PostsMutation, PostWithID } from '../../types';
 
 export const fetchPosts = createAsyncThunk<PostHomeWindow[]>(
   'post/fetchAll',
@@ -33,4 +33,16 @@ export const createPost = createAsyncThunk<
   });
 
   dispatch(fetchPosts());
+});
+
+export const fetchOnePost = createAsyncThunk<
+  PostWithID,
+  string,
+  { state: RootState }
+>('post/fetchOne', async (id, { getState }) => {
+  const token = getState().users.user?.token;
+  const response = await axiosApi.get<PostWithID>(`/posts/${id}`, {
+    headers: { Authorization: 'Bearer ' + token },
+  });
+  return response.data;
 });
