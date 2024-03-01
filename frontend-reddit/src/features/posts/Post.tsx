@@ -1,9 +1,9 @@
-import PostItem from './components/PostItem';
-import { CircularProgress, Grid } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectPostFetchLoading, selectPosts } from './postSlice';
 import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchPosts } from './postThunks';
+import PostItem from './components/PostItem';
+import { selectPostFetchLoading, selectPosts } from './postSlice';
+import { CircularProgress, Grid } from '@mui/material';
 
 const Post = () => {
   const dispatch = useAppDispatch();

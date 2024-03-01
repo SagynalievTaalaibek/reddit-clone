@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   Box,
   Card,
@@ -12,7 +13,6 @@ import { apiURL } from '../../../constants';
 import imageMessage from '../../../assets/images/message.png';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import dayjs from 'dayjs';
-import { NavLink } from 'react-router-dom';
 
 dayjs.extend(LocalizedFormat);
 
