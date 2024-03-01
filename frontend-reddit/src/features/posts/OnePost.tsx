@@ -63,6 +63,9 @@ const OnePost = () => {
           </Grid>
         )
       )}
+      <Grid container sx={{ mt: 2 }}>
+        Comments
+      </Grid>
     </>
   );
 };
