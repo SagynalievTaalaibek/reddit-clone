@@ -24,4 +24,23 @@ commentRouter.post('/', auth, async (req: RequestWithUser, res, next) => {
   }
 });
 
+commentRouter.get('/', async (req, res, next) => {
+  try {
+    const post = req.query.post;
+
+    try {
+      const postsData = await Comment.find({ post }).populate(
+        'user',
+        '-_id username',
+      );
+
+      return res.send(postsData);
+    } catch (e) {
+      return res.status(404).send({ message: 'Wrong object id' });
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
 export default commentRouter;
