@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { userReducer } from '../features/users/usersSlice';
 import { postReducer } from '../features/posts/postSlice';
+import { commentReducer } from '../features/comments/commentSlice';
 
 const usersPersistConfig = {
   key: 'reddit:users',
@@ -22,6 +23,7 @@ const usersPersistConfig = {
 const rootReducer = combineReducers({
   users: persistReducer(usersPersistConfig, userReducer),
   posts: postReducer,
+  comments: commentReducer,
 });
 
 export const store = configureStore({

@@ -51,6 +51,20 @@ export interface PostHomeWindow {
   createdAt: string;
 }
 
+export interface CommentsI {
+  _id: string;
+  user: {
+    username: string;
+  };
+  post: string;
+  text: string;
+}
+
+export interface CommentsMutation {
+  post: string;
+  text: string;
+}
+
 export interface PostWithID {
   _id: string;
   author: {

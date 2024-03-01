@@ -28,6 +28,11 @@ const PostForm: React.FC<Props> = ({ onSubmit }) => {
     } else {
       setIsImage(false);
       onSubmit(post);
+      setPost({
+        title: '',
+        description: '',
+        image: null,
+      });
     }
   };
 
