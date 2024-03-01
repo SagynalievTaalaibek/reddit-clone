@@ -1,5 +1,5 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import auth, { RequestWithUser } from '../middleware/auth';
 import Post from '../models/Post';
 import { imagesUpload } from '../multer';
@@ -48,9 +48,33 @@ postRouter.post(
 postRouter.get('/', async (_req, res, next) => {
   try {
     const posts = await Post.find()
-      .select('_id author title createdAt')
-      .populate('author', '-_id username');
+      .select('_id author title image createdAt')
+      .populate('author', '-_id username')
+      .sort({ createdAt: -1 });
     res.send(posts);
+  } catch (e) {
+    next(e);
+  }
+});
+
+postRouter.get('/:id', async (req, res, next) => {
+  try {
+    let _id: Types.ObjectId;
+    try {
+      _id = new Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).send({ error: 'Wrong ObjectId!' });
+    }
+
+    const post = await Post.findById(_id)
+      .select('-updatedAt')
+      .populate('author', '-_id username');
+
+    if (!post) {
+      return res.status(404).send({ error: 'Not found!' });
+    }
+
+    res.send(post);
   } catch (e) {
     next(e);
   }
