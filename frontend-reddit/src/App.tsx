@@ -7,6 +7,7 @@ import { useAppSelector } from './app/hooks';
 import { selectUser } from './features/users/usersSlice';
 import NewPost from './features/posts/NewPost';
 import NotFound from './components/NotFound';
+import Post from './features/posts/Post';
 
 const App = () => {
   const user = useAppSelector(selectUser);
@@ -20,7 +21,7 @@ const App = () => {
       <main>
         <Container maxWidth="xl" sx={{ mt: 1 }}>
           <Routes>
-            <Route path="/" element={'Home'} />
+            <Route path="/" element={<Post />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             {user ? <Route path="/add-new-post" element={<NewPost />} /> : ''}

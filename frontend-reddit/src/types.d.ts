@@ -40,3 +40,24 @@ export interface PostsMutation {
   description: string;
   image: string | null;
 }
+
+export interface PostHomeWindow {
+  _id: string;
+  author: {
+    username: string;
+  };
+  title: string;
+  image: string;
+  createdAt: string;
+}
+
+export interface PostWithID {
+  _id: string;
+  author: {
+    username: string;
+  };
+  title: string;
+  description: string;
+  image: string;
+  createdAt: string;
+}
