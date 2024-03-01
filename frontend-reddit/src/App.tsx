@@ -5,6 +5,8 @@ import Register from './features/users/Register';
 import Login from './features/users/Login';
 import { useAppSelector } from './app/hooks';
 import { selectUser } from './features/users/usersSlice';
+import NewPost from './features/posts/NewPost';
+import NotFound from './components/NotFound';
 
 const App = () => {
   const user = useAppSelector(selectUser);
@@ -16,13 +18,13 @@ const App = () => {
         <AppToolbar />
       </header>
       <main>
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" sx={{ mt: 1 }}>
           <Routes>
             <Route path="/" element={'Home'} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            {user ? <Route path="/add-new-post" element={'New post'} /> : ''}
-            <Route path="*" element={<h1>Not found</h1>} />
+            {user ? <Route path="/add-new-post" element={<NewPost />} /> : ''}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Container>
       </main>

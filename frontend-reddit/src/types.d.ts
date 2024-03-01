@@ -34,3 +34,9 @@ export interface LoginMutation {
 export interface GlobalError {
   error: string;
 }
+
+export interface PostsMutation {
+  title: string;
+  description: string;
+  image: string | null;
+}
